@@ -1,0 +1,57 @@
+/**
+ * @author Andrew Johnson (agjohns2)
+ * @version 1 first version of GuessingGame
+ *
+ *
+ *
+ * This program is designed to allow the user to guess the randomly generated number until they 
+ * guess correctly. This is achieved by using a while loop to repeat the sequence until the 
+ * user's input matches the the 'secret number'.
+ *
+ *
+ */
+
+import java.util.*;
+
+public class GuessingGame{
+    
+    
+    /**
+     * The main method generates a random number and then enters a while loop comparing that number to the users input
+     * Once the two values match, the loop ends and a victory message is printed for the user.
+     * 
+     * @param args command line arguments
+     */
+    public static void main(String[] args){
+        
+        Scanner console = new Scanner(System.in);
+        Random random = new Random();
+        
+        System.out.println();
+        System.out.println("Welcome to Guess Again, a guessing game.");
+        System.out.println("If you can guess the secret number between 1 and 50 you will win!");
+        System.out.println("To play, just enter your guess and press the enter key");
+        
+        int i = -1; //primes the loop to ensure that it begins
+        int secretNumber = random.nextInt(50) + 1; //random number generator 1-50, placed prior to the
+                                                   //while loop as to maintain a consistent target int
+        int input = -1; // variable created here to allow it to exist outside of the while loop's scope
+        
+        while(i != secretNumber){
+            input = console.nextInt();
+            i = input;
+            if(input < 1 || input > 50){
+                System.out.println("err, you entered an invalid value. Try entering a value between 1 and 50.");
+            }
+            if(input < secretNumber && input > 0){
+                System.out.println("Ah, your number is too low. Guess again!");
+            }else if(input > secretNumber && input < 51){
+                System.out.println("Ooh, your number is too high. Guess again!");
+            }
+        }
+        
+        System.out.println("You guessed it! The secret number is " + secretNumber);
+    }
+}
+        
+        
